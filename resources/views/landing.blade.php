@@ -237,6 +237,7 @@
 
             // ---- Hitung auto-layout grid 12-kolom: baris penuh diisi 4 tile rata,
             // sisa tile di baris terakhir melebar rata mengisi ruang yang ada. ----
+            
             $appCount = count($availableApps);
             $normalRowCount = intdiv($appCount, 4);
             $lastRowColumnCount = $appCount % 4;
