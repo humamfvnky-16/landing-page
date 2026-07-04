@@ -29,4 +29,9 @@ return [
     // API publik Data Center untuk statistik jumlah siswa/guru (tanpa token,
     // lihat routes/api.php di app Datacenter: GET /api/v1/public/stats).
     'stats_api_url' => env('DATACENTER_API_URL', 'http://127.0.0.1:8001/api').'/v1/public/stats',
+
+    // API publik Data Center untuk branding (nama sekolah + logo + favicon) —
+    // sumber tunggal supaya seragam dengan CBT & Data Center.
+    // (GET /api/v1/public/branding)
+    'branding_api_url' => env('DATACENTER_API_URL', 'http://127.0.0.1:8001/api').'/v1/public/branding',
 ];

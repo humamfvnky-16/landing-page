@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $sekolah['nama'] }} &middot; {{ $sekolah['tagline'] }}</title>
+@if(!empty($sekolah['favicon_url']))
+<link rel="icon" href="{{ $sekolah['favicon_url'] }}">
+@endif
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800,900" rel="stylesheet" />
 <style>
@@ -160,6 +163,10 @@
     <div class="wrap">
         <div class="m-head">
             <div class="kicker">Available Apps</div>
+            @if(!empty($sekolah['logo_url']))
+                <img src="{{ $sekolah['logo_url'] }}" alt="Logo {{ $sekolah['nama'] }}"
+                     style="width:64px;height:64px;object-fit:contain;margin:0 auto 12px;display:block;">
+            @endif
             <h2>{{ $sekolah['nama'] }}</h2>
             <p>{{ $sekolah['tagline'] }}</p>
         </div>
