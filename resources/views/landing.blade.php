@@ -55,8 +55,9 @@
     .m-head h2{font-size:28px;font-weight:800;margin:0 0 8px;color:var(--ink);}
     .m-head p{font-size:14px;color:var(--ink-700);}
 
-    .app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    .app-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;}
     .app-card{
+        grid-column:span var(--span-m, 6);
         background:#fff;
         border:1px solid #eef0f5;
         border-radius:20px;
@@ -70,6 +71,9 @@
         overflow:hidden;
         box-shadow:0 10px 24px -18px rgba(30,41,90,.18);
         transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, border-color .22s ease;
+    }
+    @media(min-width:641px){
+        .app-card{grid-column:span var(--span-d, 3);}
     }
     .app-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
         background:linear-gradient(90deg,var(--tint,#4f46e5),transparent 140%);
@@ -90,10 +94,6 @@
     .app-card .sub{display:block;font-size:11.5px;color:var(--ink-500);margin-top:3px;}
     .app-card .go{display:inline-flex;align-items:center;gap:4px;margin-top:12px;font-size:11px;font-weight:700;
         color:var(--tint,var(--navy-2));opacity:0;transform:translateY(3px);transition:opacity .22s ease, transform .22s ease;}
-    .app-card .pill{margin-top:12px;background:#f1f2f4;color:var(--ink-500);font-size:9px;font-weight:800;
-        padding:3px 8px;border-radius:999px;letter-spacing:.03em;}
-    .app-card.muted{opacity:.6;filter:grayscale(.4);cursor:default;box-shadow:0 6px 16px -14px rgba(30,41,90,.15);}
-
     footer{padding:26px 0;color:var(--ink-500);font-size:13px;text-align:center;border-top:1px solid var(--line);margin-top:20px;}
 
     @media(max-width:860px){
@@ -102,9 +102,6 @@
         .float-strip{grid-template-columns:1fr;margin:-40px 20px 0;}
         .float-strip .item + .item::before{display:none;}
         h1{font-size:45px;}
-    }
-    @media(max-width:480px){
-        .app-grid{grid-template-columns:repeat(2,1fr);}
     }
 </style>
 </head>
@@ -167,74 +164,133 @@
             <p>{{ $sekolah['tagline'] }}</p>
         </div>
 
-        <div class="app-grid">
-            <a href="{{ rtrim($apps['datacenter'], '/') }}/login" class="app-card">
-                <div class="ic c1">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="24" cy="15" r="6"/>
-                        <path d="M12 38c0-7 5-12 12-12s12 5 12 12"/>
-                        <circle cx="9" cy="20" r="4"/>
-                        <path d="M2 34c0-5 3-8.5 7-9.5"/>
-                        <circle cx="39" cy="20" r="4"/>
-                        <path d="M46 34c0-5-3-8.5-7-9.5"/>
-                    </svg>
-                </div>
-                <span class="title">Data Center</span>
-                <span class="sub">Pusat Data Sekolah</span>
-                <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
-            </a>
-
-            <a href="{{ rtrim($apps['cbt'], '/') }}/login" class="app-card">
-                <div class="ic c2">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="6" y="9" width="36" height="24" rx="3"/>
-                        <path d="M18 40h12M24 33v7"/>
-                        <path d="M24 15v8l6 4"/>
-                    </svg>
-                </div>
-                <span class="title">CBT</span>
-                <span class="sub">Computer Based Test</span>
-                <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
-            </a>
-
-            @if($apps['presensi'])
-                <a href="{{ rtrim($apps['presensi'], '/') }}" class="app-card">
-            @else
-                <div class="app-card muted">
-            @endif
-                <div class="ic c3">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="24" cy="24" r="17"/>
-                        <path d="M24 14v10l7 5"/>
-                    </svg>
-                </div>
-                <span class="title">Presensi</span>
-                <span class="sub">Manajemen Kehadiran</span>
-                @if($apps['presensi'])
-                    <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
-                @else
-                    <span class="pill">Segera Hadir</span>
-                @endif
-            @if($apps['presensi'])
-                </a>
-            @else
-                </div>
-            @endif
-
-            @if($apps['perpus'])
-                <a href="{{ rtrim($apps['perpus'], '/') }}" target="_blank" rel="noopener noreferrer" class="app-card">
-                    <div class="ic c4">
+        @php
+            // Katalog semua app yang bisa tampil di landing page. 'enabled' menentukan
+            // apakah app ini benar-benar tersedia (URL terisi) — app yang tidak enabled
+            // tidak dirender sama sekali, sehingga grid otomatis menata ulang sisanya.
+            $catalog = [
+                'datacenter' => [
+                    'enabled' => !empty($apps['datacenter']),
+                    'href' => rtrim($apps['datacenter'] ?? '', '/').'/login',
+                    'target' => null,
+                    'title' => 'Data Center',
+                    'subtitle' => 'Pusat Data Sekolah',
+                    'colorClass' => 'c1',
+                    'icon' => <<<'SVG'
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="24" cy="15" r="6"/>
+                            <path d="M12 38c0-7 5-12 12-12s12 5 12 12"/>
+                            <circle cx="9" cy="20" r="4"/>
+                            <path d="M2 34c0-5 3-8.5 7-9.5"/>
+                            <circle cx="39" cy="20" r="4"/>
+                            <path d="M46 34c0-5-3-8.5-7-9.5"/>
+                        </svg>
+                        SVG,
+                ],
+                'cbt' => [
+                    'enabled' => !empty($apps['cbt']),
+                    'href' => rtrim($apps['cbt'] ?? '', '/').'/login',
+                    'target' => null,
+                    'title' => 'CBT',
+                    'subtitle' => 'Computer Based Test',
+                    'colorClass' => 'c2',
+                    'icon' => <<<'SVG'
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="9" width="36" height="24" rx="3"/>
+                            <path d="M18 40h12M24 33v7"/>
+                            <path d="M24 15v8l6 4"/>
+                        </svg>
+                        SVG,
+                ],
+                'presensi' => [
+                    'enabled' => !empty($apps['presensi']),
+                    'href' => rtrim($apps['presensi'] ?? '', '/'),
+                    'target' => null,
+                    'title' => 'Presensi',
+                    'subtitle' => 'Manajemen Kehadiran',
+                    'colorClass' => 'c3',
+                    'icon' => <<<'SVG'
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="24" cy="24" r="17"/>
+                            <path d="M24 14v10l7 5"/>
+                        </svg>
+                        SVG,
+                ],
+                'perpus' => [
+                    'enabled' => !empty($apps['perpus']),
+                    'href' => rtrim($apps['perpus'] ?? '', '/'),
+                    'target' => '_blank',
+                    'title' => 'Perpustakaan',
+                    'subtitle' => 'Perpustakaan Digital',
+                    'colorClass' => 'c4',
+                    'icon' => <<<'SVG'
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 6h18l6 6v30a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>
                             <path d="M30 6v6h6"/>
                             <path d="M16 24h16M16 31h16M16 17h8"/>
                         </svg>
-                    </div>
-                    <span class="title">Perpustakaan</span>
-                    <span class="sub">Perpustakaan Digital</span>
-                    <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
+                        SVG,
+                ],
+            ];
+
+            $availableApps = array_values(array_filter($catalog, fn ($app) => $app['enabled']));
+
+            // ---- Hitung auto-layout grid 12-kolom: baris penuh diisi 4 tile rata,
+            // sisa tile di baris terakhir melebar rata mengisi ruang yang ada. ----
+            $appCount = count($availableApps);
+            $normalRowCount = intdiv($appCount, 4);
+            $lastRowColumnCount = $appCount % 4;
+            $rowSlotsLeft = $normalRowCount * 4;
+            $lastRowRemaining = $lastRowColumnCount;
+
+            foreach ($availableApps as &$app) {
+                if ($rowSlotsLeft > 0) {
+                    // Bagian dari baris penuh (4 tile): 2 per baris di mobile, 4 per baris di desktop.
+                    $app['spanMobile'] = 6;
+                    $app['spanDesktop'] = 3;
+                    $rowSlotsLeft--;
+                    continue;
+                }
+
+                switch ($lastRowColumnCount) {
+                    case 1:
+                        // Cuma 1 app total -> setengah lebar. Sisa 1 di baris terakhir -> penuh.
+                        $span = $normalRowCount === 0 ? 6 : 12;
+                        $app['spanMobile'] = $span;
+                        $app['spanDesktop'] = $span;
+                        break;
+                    case 2:
+                        $app['spanMobile'] = 6;
+                        $app['spanDesktop'] = 6;
+                        break;
+                    case 3:
+                        $lastRowRemaining--;
+                        // Tile terakhir dari sisa 3 turun ke barisnya sendiri di mobile,
+                        // 2 tile pertama berdampingan. Di desktop, ketiganya rata 1/3.
+                        $app['spanMobile'] = $lastRowRemaining === 0 ? 12 : 6;
+                        $app['spanDesktop'] = 4;
+                        break;
+                }
+            }
+            unset($app);
+
+            $arrowIcon = <<<'SVG'
+                <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg>
+                SVG;
+        @endphp
+
+        <div class="app-grid">
+            @foreach($availableApps as $app)
+                <a href="{{ $app['href'] }}"
+                   @if($app['target']) target="{{ $app['target'] }}" rel="noopener noreferrer" @endif
+                   class="app-card"
+                   style="--span-m:{{ $app['spanMobile'] }};--span-d:{{ $app['spanDesktop'] }}">
+                    <div class="ic {{ $app['colorClass'] }}">{!! $app['icon'] !!}</div>
+                    <span class="title">{{ $app['title'] }}</span>
+                    <span class="sub">{{ $app['subtitle'] }}</span>
+                    <span class="go">Buka {!! $arrowIcon !!}</span>
                 </a>
-            @endif
+            @endforeach
         </div>
     </div>
 </section>
