@@ -49,40 +49,50 @@
     .float-strip b{display:block;font-size:14px;margin-bottom:3px;}
     .float-strip span{font-size:12px;color:var(--ink-500);line-height:1.5;}
 
-    .modules-v2{padding:100px 0 70px;background:#fff;}
-    .m-head{text-align:center;max-width:560px;margin:0 auto 40px;}
+    .modules-v2{padding:100px 0 80px;background:linear-gradient(180deg,#fff 0%,#f6f7fb 100%);}
+    .m-head{text-align:center;max-width:560px;margin:0 auto 44px;}
     .m-head .kicker{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--red);text-transform:uppercase;margin-bottom:10px;}
     .m-head h2{font-size:28px;font-weight:800;margin:0 0 8px;color:var(--ink);}
     .m-head p{font-size:14px;color:var(--ink-700);}
 
-    .soft-card{
-        background:linear-gradient(150deg,#fbfcfe 0%,#e8ebf1 100%);
-        border-radius:22px;
-        box-shadow:0 16px 36px -18px rgba(30,47,92,.25), inset 0 1px 0 rgba(255,255,255,.7);
-        padding:34px 24px;
+    .app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    .app-card{
+        background:#fff;
+        border:1px solid #eef0f5;
+        border-radius:20px;
+        padding:30px 16px 24px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
         text-align:center;
-        position:relative;
         text-decoration:none;
-        display:block;
-        transition:transform .18s ease, box-shadow .18s ease;
+        position:relative;
+        overflow:hidden;
+        box-shadow:0 10px 24px -18px rgba(30,41,90,.18);
+        transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, border-color .22s ease;
     }
-    a.soft-card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -18px rgba(30,47,92,.32), inset 0 1px 0 rgba(255,255,255,.7);}
-    .soft-card .ic{width:58px;height:58px;margin:0 auto 14px;color:var(--navy);}
-    .soft-card .ic svg{width:100%;height:100%;}
-    .soft-card b.title{display:block;font-size:16px;font-weight:800;letter-spacing:.03em;color:var(--navy);margin-bottom:4px;text-transform:uppercase;}
-    .soft-card span.sub{display:block;font-size:13px;color:var(--navy-2);}
-    .soft-card .pill{position:absolute;top:16px;right:16px;background:#fdece9;color:var(--red);font-size:10px;font-weight:800;
-        padding:4px 10px;border-radius:999px;letter-spacing:.03em;}
+    .app-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+        background:linear-gradient(90deg,var(--tint,#4f46e5),transparent 140%);
+        opacity:0;transition:opacity .22s ease;}
+    a.app-card:hover{transform:translateY(-7px);box-shadow:0 26px 44px -20px rgba(30,41,90,.28);border-color:transparent;}
+    a.app-card:hover::before{opacity:1;}
+    a.app-card:hover .ic{transform:scale(1.08) rotate(-2deg);}
+    a.app-card:hover .go{opacity:1;transform:translateY(0);}
 
-    .m-primary{margin-bottom:20px;}
-    .m-primary .soft-card{padding:44px 24px;}
-    .m-primary .ic{width:74px;height:74px;}
-    .m-primary b.title{font-size:19px;}
-    .m-primary span.sub{font-size:14px;}
-
-    .m-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-    .soft-card.muted{opacity:.55;filter:grayscale(.3);cursor:default;}
-    .soft-card.muted .pill{background:#f1f2f4;color:var(--ink-500);}
+    .app-card .ic{width:56px;height:56px;border-radius:16px;margin-bottom:16px;display:grid;place-items:center;flex-shrink:0;
+        transition:transform .22s ease;}
+    .app-card .ic svg{width:26px;height:26px;}
+    .app-card .ic.c1{--tint:#4f46e5;background:linear-gradient(150deg,#eef1ff,#dbe1fb);color:#4338ca;box-shadow:0 10px 18px -10px rgba(79,70,229,.45);}
+    .app-card .ic.c2{--tint:#0284c7;background:linear-gradient(150deg,#e6f6ff,#cdedff);color:#0369a1;box-shadow:0 10px 18px -10px rgba(2,132,199,.4);}
+    .app-card .ic.c3{--tint:#16a34a;background:linear-gradient(150deg,#e9fbef,#d1f5dd);color:#15803d;box-shadow:0 10px 18px -10px rgba(22,163,74,.4);}
+    .app-card .ic.c4{--tint:#d97706;background:linear-gradient(150deg,#fff5df,#ffe8b8);color:#b45309;box-shadow:0 10px 18px -10px rgba(217,119,6,.4);}
+    .app-card .title{display:block;font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.3;letter-spacing:-.01em;}
+    .app-card .sub{display:block;font-size:11.5px;color:var(--ink-500);margin-top:3px;}
+    .app-card .go{display:inline-flex;align-items:center;gap:4px;margin-top:12px;font-size:11px;font-weight:700;
+        color:var(--tint,var(--navy-2));opacity:0;transform:translateY(3px);transition:opacity .22s ease, transform .22s ease;}
+    .app-card .pill{margin-top:12px;background:#f1f2f4;color:var(--ink-500);font-size:9px;font-weight:800;
+        padding:3px 8px;border-radius:999px;letter-spacing:.03em;}
+    .app-card.muted{opacity:.6;filter:grayscale(.4);cursor:default;box-shadow:0 6px 16px -14px rgba(30,41,90,.15);}
 
     footer{padding:26px 0;color:var(--ink-500);font-size:13px;text-align:center;border-top:1px solid var(--line);margin-top:20px;}
 
@@ -91,8 +101,10 @@
         .hero-inner{padding:130px 28px 60px;}
         .float-strip{grid-template-columns:1fr;margin:-40px 20px 0;}
         .float-strip .item + .item::before{display:none;}
-        .m-row{grid-template-columns:1fr;}
         h1{font-size:45px;}
+    }
+    @media(max-width:480px){
+        .app-grid{grid-template-columns:repeat(2,1fr);}
     }
 </style>
 </head>
@@ -155,9 +167,9 @@
             <p>{{ $sekolah['tagline'] }}</p>
         </div>
 
-        <div class="m-primary">
-            <a href="{{ rtrim($apps['datacenter'], '/') }}/login" class="soft-card">
-                <div class="ic">
+        <div class="app-grid">
+            <a href="{{ rtrim($apps['datacenter'], '/') }}/login" class="app-card">
+                <div class="ic c1">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="24" cy="15" r="6"/>
                         <path d="M12 38c0-7 5-12 12-12s12 5 12 12"/>
@@ -167,38 +179,42 @@
                         <path d="M46 34c0-5-3-8.5-7-9.5"/>
                     </svg>
                 </div>
-                <b class="title">Data Center</b>
+                <span class="title">Data Center</span>
                 <span class="sub">Pusat Data Sekolah</span>
+                <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
             </a>
-        </div>
 
-        <div class="m-row">
-            <a href="{{ rtrim($apps['cbt'], '/') }}/login" class="soft-card">
-                <div class="ic">
+            <a href="{{ rtrim($apps['cbt'], '/') }}/login" class="app-card">
+                <div class="ic c2">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="6" y="9" width="36" height="24" rx="3"/>
                         <path d="M18 40h12M24 33v7"/>
                         <path d="M24 15v8l6 4"/>
                     </svg>
                 </div>
-                <b class="title">CBT</b>
+                <span class="title">CBT</span>
                 <span class="sub">Computer Based Test</span>
+                <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
             </a>
 
             @if($apps['presensi'])
-                <a href="{{ rtrim($apps['presensi'], '/') }}" class="soft-card">
+                <a href="{{ rtrim($apps['presensi'], '/') }}" class="app-card">
             @else
-                <div class="soft-card muted">
-                    <div class="pill">Segera Hadir</div>
+                <div class="app-card muted">
             @endif
-                <div class="ic">
+                <div class="ic c3">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="24" cy="24" r="17"/>
                         <path d="M24 14v10l7 5"/>
                     </svg>
                 </div>
-                <b class="title">Presensi</b>
+                <span class="title">Presensi</span>
                 <span class="sub">Manajemen Kehadiran</span>
+                @if($apps['presensi'])
+                    <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
+                @else
+                    <span class="pill">Segera Hadir</span>
+                @endif
             @if($apps['presensi'])
                 </a>
             @else
@@ -206,16 +222,17 @@
             @endif
 
             @if($apps['perpus'])
-                <a href="{{ rtrim($apps['perpus'], '/') }}" target="_blank" rel="noopener noreferrer" class="soft-card">
-                    <div class="ic">
+                <a href="{{ rtrim($apps['perpus'], '/') }}" target="_blank" rel="noopener noreferrer" class="app-card">
+                    <div class="ic c4">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 6h18l6 6v30a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>
                             <path d="M30 6v6h6"/>
                             <path d="M16 24h16M16 31h16M16 17h8"/>
                         </svg>
                     </div>
-                    <b class="title">Perpustakaan</b>
+                    <span class="title">Perpustakaan</span>
                     <span class="sub">Perpustakaan Digital</span>
+                    <span class="go">Buka <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg></span>
                 </a>
             @endif
         </div>
