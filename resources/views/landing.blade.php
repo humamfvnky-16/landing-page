@@ -20,10 +20,10 @@
     .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
 
     .hero{position:relative;overflow:hidden;min-height:520px;
-        @if($hero['bg_image'])
+        @if($hero['bg_image_url'])
             background:
                 linear-gradient(100deg, rgba(10,8,8,.88) 10%, rgba(10,8,8,.55) 45%, rgba(10,8,8,.15) 75%),
-                url('{{ asset('images/'.$hero['bg_image']) }}') center/cover no-repeat;
+                url('{{ $hero['bg_image_url'] }}') center/cover no-repeat;
         @else
             background:
                 radial-gradient(circle at 15% 20%, rgba(220,38,38,.35), transparent 55%),

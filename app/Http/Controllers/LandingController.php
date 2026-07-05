@@ -17,9 +17,11 @@ class LandingController extends Controller
      */
     public function index()
     {
+        $branding = $this->fetchBranding();
+
         return view('landing', [
-            'sekolah' => $this->sekolah(),
-            'hero' => config('landing.hero'),
+            'sekolah' => $this->sekolah($branding),
+            'hero' => $this->hero($branding),
             'apps' => config('landing.apps'),
             'stats' => $this->fetchStats(),
         ]);
@@ -31,10 +33,9 @@ class LandingController extends Controller
      * (SEKOLAH_NAMA / SEKOLAH_LOGO) supaya landing tetap tampil walau Data
      * Center mati.
      */
-    protected function sekolah(): array
+    protected function sekolah(array $branding): array
     {
         $sekolah = config('landing.sekolah');
-        $branding = $this->fetchBranding();
 
         $sekolah['nama'] = $branding['school_name'] ?? $sekolah['nama'];
         $sekolah['logo_url'] = $branding['logo']
@@ -44,20 +45,47 @@ class LandingController extends Controller
         return $sekolah;
     }
 
+    /**
+     * Hero banner: background pakai gambar Background Halaman Login yang
+     * diatur di Data Center (sama seperti login CBT & Data Center), dengan
+     * fallback ke HERO_BG_IMAGE lokal (.env) kalau Data Center tak
+     * terjangkau. Subjudul otomatis menyertakan nama sekolah asli dari Data
+     * Center, bukan lagi teks statis di .env (HERO_SUBJUDUL tetap dipakai
+     * sebagai fallback).
+     */
+    protected function hero(array $branding): array
+    {
+        $hero = config('landing.hero');
+
+        $hero['bg_image_url'] = $branding['login_bg']
+            ?? (! empty($hero['bg_image']) ? asset('images/'.$hero['bg_image']) : null);
+
+        $hero['subjudul'] = $branding['school_name']
+            ? "Selamat datang di Sistem Manajemen Pembelajaran Digital {$branding['school_name']}."
+            : $hero['subjudul'];
+
+        return $hero;
+    }
+
+    /**
+     * Tidak di-cache (sengaja) — logo/nama/background halaman login harus
+     * langsung terlihat begitu diubah di Pengaturan Aplikasi Data Center,
+     * tanpa delay. Timeout pendek (3 detik) supaya landing page tetap
+     * responsif walau Data Center lambat/mati; kalau gagal, fallback ke
+     * konfigurasi env lokal (lihat sekolah()).
+     */
     protected function fetchBranding(): array
     {
-        return Cache::remember('landing:branding', now()->addMinutes(5), function () {
-            try {
-                $response = Http::timeout(3)->get(config('landing.branding_api_url'));
-                if ($response->successful()) {
-                    return (array) $response->json('data', []);
-                }
-            } catch (\Throwable $e) {
-                Log::warning('Gagal mengambil branding Data Center untuk landing page', ['error' => $e->getMessage()]);
+        try {
+            $response = Http::timeout(3)->get(config('landing.branding_api_url'));
+            if ($response->successful()) {
+                return (array) $response->json('data', []);
             }
+        } catch (\Throwable $e) {
+            Log::warning('Gagal mengambil branding Data Center untuk landing page', ['error' => $e->getMessage()]);
+        }
 
-            return [];
-        });
+        return [];
     }
 
     protected function fetchStats(): array
