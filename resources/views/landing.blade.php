@@ -159,6 +159,8 @@
     </div>
 </div>
 
+
+<!-- icon logo aplikasi-->
 <section class="modules-v2" id="modul">
     <div class="wrap">
         <div class="m-head">
@@ -170,8 +172,7 @@
             <h2>{{ $sekolah['nama'] }}</h2>
             <p>{{ $sekolah['tagline'] }}</p>
         </div>
-
-        @php
+@php
             // Katalog semua app yang bisa tampil di landing page. 'enabled' menentukan
             // apakah app ini benar-benar tersedia (URL terisi) — app yang tidak enabled
             // tidak dirender sama sekali, sehingga grid otomatis menata ulang sisanya.
@@ -238,6 +239,21 @@
                         </svg>
                         SVG,
                 ],
+                'kesiswaan' => [
+                    'enabled' => !empty($apps['kesiswaan']),
+                    'href' => rtrim($apps['kesiswaan'] ?? '', '/'),
+                    'target' => '_blank',
+                    'title' => 'Kesiswaan',
+                    'subtitle' => 'Manajemen Siswa',
+                    'colorClass' => 'c4',
+                    'icon' => <<<'SVG'
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 6h18l6 6v30a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>
+                            <path d="M30 6v6h6"/>
+                            <path d="M16 24h16M16 31h16M16 17h8"/>
+                        </svg>
+                        SVG,
+                ],
             ];
 
             $availableApps = array_values(array_filter($catalog, fn ($app) => $app['enabled']));
@@ -286,8 +302,8 @@
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 2.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 8 4.646 3.354a.5.5 0 0 1 0-.708"/></svg>
                 SVG;
         @endphp
-
         <div class="app-grid">
+           
             @foreach($availableApps as $app)
                 <a href="{{ $app['href'] }}"
                    @if($app['target']) target="{{ $app['target'] }}" rel="noopener noreferrer" @endif
@@ -298,7 +314,7 @@
                     <span class="sub">{{ $app['subtitle'] }}</span>
                     <span class="go">Buka {!! $arrowIcon !!}</span>
                 </a>
-            @endforeach
+            @endforeach 
         </div>
     </div>
 </section>

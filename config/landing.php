@@ -22,8 +22,9 @@ return [
     'apps' => [
         'datacenter' => env('DATACENTER_APP_URL', 'http://127.0.0.1:8001'),
         'cbt'        => env('CBT_APP_URL', 'http://127.0.0.1:8002'),
-        'presensi'   => env('PRESENSI_APP_URL'), // null = tampil sebagai "Segera Hadir"
-        'perpus'     => env('PERPUS_APP_URL'),
+        'presensi'   => env('PRESENSI_APP_URL', null), // null = tampil sebagai "Segera Hadir"
+        'perpus'     => env('PERPUS_APP_URL', 'http://127.0.0.1:8002/perpus'),
+        'kesiswaan'  => env('KESISWAAN_APP_URL', 'http://127.0.0.1:8002/kesiswaan'),
     ],
 
     // API publik Data Center untuk statistik jumlah siswa/guru (tanpa token,

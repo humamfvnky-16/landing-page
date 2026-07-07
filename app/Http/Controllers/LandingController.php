@@ -60,7 +60,7 @@ class LandingController extends Controller
         $hero['bg_image_url'] = $branding['login_bg']
             ?? (! empty($hero['bg_image']) ? asset('images/'.$hero['bg_image']) : null);
 
-        $hero['subjudul'] = $branding['school_name']
+        $hero['subjudul'] = ($branding['school_name'] ?? null)
             ? "Selamat datang di Sistem Manajemen Pembelajaran Digital {$branding['school_name']}."
             : $hero['subjudul'];
 
