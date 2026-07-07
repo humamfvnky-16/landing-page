@@ -7,8 +7,14 @@
 @if(!empty($sekolah['favicon_url']))
 <link rel="icon" href="{{ $sekolah['favicon_url'] }}">
 @endif
-<link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800,900" rel="stylesheet" />
+<style>
+    /* Plus Jakarta Sans — self-hosted (public/fonts), tidak butuh koneksi internet */
+    @font-face { font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:400; font-display:swap; src:url('{{ asset('fonts/plus-jakarta-sans-latin-400.woff2') }}') format('woff2'); }
+    @font-face { font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:500; font-display:swap; src:url('{{ asset('fonts/plus-jakarta-sans-latin-500.woff2') }}') format('woff2'); }
+    @font-face { font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:600; font-display:swap; src:url('{{ asset('fonts/plus-jakarta-sans-latin-600.woff2') }}') format('woff2'); }
+    @font-face { font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:700; font-display:swap; src:url('{{ asset('fonts/plus-jakarta-sans-latin-700.woff2') }}') format('woff2'); }
+    @font-face { font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:800; font-display:swap; src:url('{{ asset('fonts/plus-jakarta-sans-latin-800.woff2') }}') format('woff2'); }
+</style>
 <style>
     :root{
         --ink:#181414; --ink-700:#57504f; --ink-500:#8c8482;
