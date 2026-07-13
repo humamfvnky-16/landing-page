@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
 
+        <!--Favicon-->
+        <link rel="icon" href="../public/img/favicon/favicon.ico">
+        
         <!-- Font awesome -->
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.4.2-web/css/all.min.css') }}" />
 
