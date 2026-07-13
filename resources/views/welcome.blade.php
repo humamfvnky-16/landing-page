@@ -190,10 +190,19 @@
                         SVG],
                 ];
 
+                // is_dir() dengan path relatif ('../../datacenter') bergantung pada current
+                // working directory PHP saat request diproses. Itu kebetulan = public/ di
+                // `php artisan serve` (dev), tapi TIDAK selalu benar di PHP-FPM produksi
+                // (tergantung setting `chdir` pool-nya) — makanya "Available Apps" bisa
+                // kosong total di server walau folder app-nya benar-benar ada. base_path()
+                // selalu absolut & tidak tergantung CWD, jadi dipakai sebagai basis cek di sini.
+                $appsBaseDir = dirname(base_path());
+
                 $availableApps = [];
                 if (Config::get('constants.available-apps')) {
                     foreach (Config::get('constants.available-apps') as $app) {
-                        if (is_dir($app['directory'])) {
+                        $appDirName = ltrim(str_replace('../../', '', $app['directory']), '/');
+                        if (is_dir($appsBaseDir.'/'.$appDirName)) {
                             $meta = $iconCatalog[$app['directory']] ?? ['color' => 'c1', 'suffix' => '', 'target' => null, 'icon' => $app['icon']];
                             $availableApps[] = [
                                 'title' => $app['title'],
