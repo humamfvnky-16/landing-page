@@ -111,64 +111,6 @@
         </style>
     </head>
     <body class="bg-gray-100">
-        <nav class="relative flex flex-wrap items-center justify-between px-2 navbar-expand-lg bg-gradient-to-r from-blue-700 to-blue-900 ">
-            <div x-data="{ isOpen: false }" @keydown.escape="isOpen = false" class="container md:px-4 mx-auto flex flex-wrap items-center justify-between">
-                <div class="w-full relative flex justify-between lg:w-auto md:px-4 lg:static lg:block lg:justify-start">
-                   <!-- <a class="hidden leading-relaxed md:inline-block mr-4 py-2 whitespace-no-wrap "
-                        href="#">
-                        <div class="py-1">
-                            <i class="fa-solid fa-school text-white text-lg "></i>
-                            <span class="ml-1 text-xl font-bold text-white uppercase">DIGITAL LEARNING MANAGEMENT SYSTEM</span>
-                        </div> 
-                    </a>-->
-                    <a class="py-2 whitespace-no-wrap  md:hidden "
-                        href="#">
-                        <i class="fa-solid fa-school text-white text-lg "></i>
-                        <span class="ml-3 uppercase text-white text-xs font-bold">DIGITAL LEARNING MANAGEMENT SYSTEM</span>
-                    </a>
-                    <button
-                        @click="isOpen = !isOpen"
-                        :class="{ 'transition transform-180': isOpen }"
-                        class="cursor-pointer px-3 py-1 bg-transparent text-white focus:outline-none focus:text-white block lg:hidden outline-none"
-                        type="button">
-                        <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <!-- close symbol -->
-                            <path
-                                :class="{ 'block': isOpen, 'hidden': !isOpen }"
-                                class="hidden"
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                            />
-        
-                            <!-- humberger symbol -->
-                            <path
-                                :class="{ 'hidden': isOpen, 'block': !isOpen }"
-                                class="block"
-                                fill-rule="evenodd"
-                                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                            />
-                        </svg>
-                    </button>
-                </div>
-                <div :class="{ 'flex': isOpen, 'hidden': !isOpen }" @click.away="isOpen = false" class="hidden md:flex flex-row w-full md:w-auto items-center" id="example-navbar-warning">
-                    <!--<ul class="flex flex-col lg:flex-row list-none ml-0 my-2 md:my-0 lg:ml-auto w-full rounded-xl bg-blue-900 md:bg-none bg-opacity-60 md:bg-opacity-0 border md:border-none border-gray-400">
-                        <li class="nav-item">
-                            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-50"
-                                href="#">
-                                HOME
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                href="#">
-                                ABOUT
-                            </a>
-                        </li>
-                    </ul>-->
-                </div>
-            </div>
-        </nav>
 
         <div class="pjs-landing">
 
