@@ -7,48 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Instalasi & Deployment (Virtualmin - smpn40.educore.web.id)
-
-App ini dilayani nginx di domain utama (`/`), root diarahkan ke `public/`. Path server: `/home/smpn40.educore.web.id/apps/landing-page`.
-
-```bash
-cd /home/smpn40.educore.web.id/apps/landing-page
-
-# 1. Install dependency PHP & JS
-composer install --no-dev --optimize-autoloader
-npm install
-npm run build
-
-# 2. Setup environment (skip jika .env sudah ada & sudah dikonfigurasi)
-cp .env.example .env
-php artisan key:generate
-
-# 3. Edit .env, pastikan minimal:
-#    APP_ENV=production
-#    APP_DEBUG=false
-#    APP_URL=https://smpn40.educore.web.id
-#    DB_DATABASE, DB_USERNAME, DB_PASSWORD sesuai database Virtualmin
-
-# 4. Link storage publik (upload, dsb)
-php artisan storage:link
-
-# 5. Migrasi database
-php artisan migrate --force
-
-# 6. Cache config/route/view untuk performa produksi
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-
-# 7. Pastikan folder ini writable oleh user PHP-FPM (mis. www-data / user virtualmin)
-chmod -R 775 storage bootstrap/cache
-```
-
-Setelah itu reload PHP-FPM/nginx bila perlu:
-```bash
-sudo systemctl reload nginx
-```
-
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -69,27 +27,27 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 
 You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
 ## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
 ### Premium Partners
 
 - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
 - **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
 - **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cubet Techno Labs](https://cubettech.com)**
 - **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
 - **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
 ## Contributing
 
