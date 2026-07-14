@@ -209,7 +209,6 @@
                         <div class="proof">
                             <div class="txt">
                                 <b>Sistem Informasi Sekolah Terintegrasi</b>
-                                <span>★ Sistem terintegrasi &amp; aman</span>
                             </div>
                         </div>
                     </div>
@@ -323,7 +322,7 @@
         </div>-->
         <div class="py-3" style="background-color:#ffffff!important;">
             <div class="text-center text-sm text-gray-900 font-semibold">
-                Copyright ©<?php echo date("Y"); ?> | All Rights Reserved    
+                Copyright Cybergarage ©<?php echo date("Y"); ?> | All Rights Reserved    
             </div>
         </div>
 
