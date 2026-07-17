@@ -242,7 +242,7 @@
                     <div class="m-head">
                         <div class="kicker">Available Apps</div>
                         <img src="{{ asset(Config::get('constants.headmaster_photo')) }}" alt="Logo {{ Config::get('constants.title') }}"
-                             style="width:64px;height:64px;object-fit:contain;margin:0 auto 12px;display:block;">
+                             style="width:200px;height:100px;object-fit:contain;margin:0 auto 12px;display:block;">
                         <h2>{{ Config::get('constants.title') }}</h2>
                         <p>Sistem Informasi Sekolah Terintegrasi</p>
                     </div>
@@ -319,7 +319,7 @@
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div> -->
         <div class="py-3" style="background-color:#ffffff!important;">
             <div class="text-center text-sm text-gray-900 font-semibold">
                 Copyright Cybergarage ©<?php echo date("Y"); ?> | All Rights Reserved    
